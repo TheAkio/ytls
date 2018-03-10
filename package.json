@@ -1,7 +1,7 @@
 {
     "name": "ytls",
     "version": "1.0.0",
-    "description": "YouTube Livestreams made easy",
+    "description": "YouTube Livestreams with NodeJS made easy ",
     "main": "build/index.js",
     "repository": "https://github.com/TheAkio/ytls.git",
     "author": "TheAkio <me@theak.io>",
