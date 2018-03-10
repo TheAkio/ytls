@@ -24,7 +24,7 @@ import M3U8Parser from './M3U8Parser';
 /**
  * Utility class that turns a YouTube Livestream M3U8 playlist URL into a stream containing all segments
  */
-export default class YouTubeAudioStream extends PassThrough {
+export default class YouTubeLiveStream extends PassThrough {
 
 	private playlistUrl: string;
 	private segmentCacheCount: number = null;
@@ -38,7 +38,7 @@ export default class YouTubeAudioStream extends PassThrough {
 	private warningCallback: (msg: string, err?: Error) => void;
 
 	/**
-	 * Creates a new YouTubeAudioStream and starts it
+	 * Creates a new YouTubeLiveStream and starts it
 	 *
 	 * @param playlistUrl A URL pointing to the M3U8 file from YouTube (Use YTDL or youtube-dl to get this)
 	 * @param segmentCacheCount How many segments should be buffered. Minimum is 3. The more data is cached the more the stream is delayed

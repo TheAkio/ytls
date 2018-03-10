@@ -1,6 +1,6 @@
 {
     "name": "ytls",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "YouTube Livestreams with NodeJS made easy ",
     "main": "build/index.js",
     "types": "build/index.d.ts",
