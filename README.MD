@@ -29,7 +29,7 @@ import YouTubeLiveStream from 'ytls';
 const { YouTubeLiveStream } = require('ytls');
 
 // Resolve a YouTube livestream URL with ytdl-core and get a result using an M3U8 playlist
-const resolved = (your magic resolve function that returns a proper url);
+const resolved = /* (your magic resolve function that returns a proper url) */;
 
 // The stream object is a PassThrough where other pieces of code can read from and use the data
 const stream = new YouTubeLiveStream(
