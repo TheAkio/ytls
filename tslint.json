@@ -1,0 +1,25 @@
+{
+    "extends": "tslint-config-xo",
+    "parserOptions": {
+        "ecmaVersion": 8
+    },
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "rules": {
+        "curly": [
+            true,
+            "ignore-same-line"
+        ],
+        "object-curly-spacing": [
+            true,
+            "always"
+        ],
+        "triple-equals": [
+            true,
+            "allow-null-check"
+        ],
+        "ordered-imports": true
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "ytls",
+    "version": "1.0.0",
+    "description": "YouTube Livestreams made easy",
+    "main": "build/index.js",
+    "repository": "https://github.com/TheAkio/ytls.git",
+    "author": "TheAkio <me@theak.io>",
+    "license": "Apache-2.0",
+    "private": false,
+    "devDependencies": {
+        "@types/node": "^9.4.7",
+        "tslint": "^5.9.1",
+        "tslint-config-xo": "^1.4.0",
+        "typescript": "^2.7.2"
+    }
+}
