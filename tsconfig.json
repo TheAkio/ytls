@@ -12,6 +12,7 @@
         "pretty": false,
         "target": "ES2017",
         "noImplicitAny": true,
+        "noImplicitReturns": true,
         "sourceMap": true,
         "skipLibCheck": true,
         "disableSizeLimit": true,
