@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Added
 - Changelog
+### Changed
+- A function returning a string should now be used instead of a string
+- on('error') and on('warning') should be used instead of the callbacks
+### Deprecated
+- The old constructor using a string and callbacks
 
 ## [1.0.3] - 2018-03-10
 ### Fixed
