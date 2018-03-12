@@ -11,7 +11,7 @@ Installing
 ---
 With NPM
 ```
-npm install ytls
+npm i ytls
 ```
 With Yarn
 ```
@@ -28,18 +28,30 @@ import YouTubeLiveStream from 'ytls';
 // When using regular NodeJS
 const { YouTubeLiveStream } = require('ytls');
 
-// Resolve a YouTube livestream URL with ytdl-core and get a result using an M3U8 playlist
-const resolved = /* (your magic resolve function that returns a proper url) */;
-
 // The stream object is a PassThrough where other pieces of code can read from and use the data
 const stream = new YouTubeLiveStream(
-	resolved,
-	3, // Optional, this defines how many segments should be cached. The lower this value is the more "live" the stream is.
-	{
-		errorCallback: (e) => {} // Optional, called whenever an error happens. The stream will end.
-		warningCallback: (msg, e) => {} // Optional, called whenever a warning occurs. Stream will continue as normal.
+	// This function will be called every 6 hours because YouTube livestreams have an expiration date
+	// firstResolve indicates whether this is the first time this function is called or not
+	// You can use firstResolve if you already resolved the stream before
+	// This function will also work without the "async" keyword
+	async (firstResolve) => {
+		// Resolve a YouTube livestream URL with ytdl-core and get a result using an M3U8 playlist
+		return /* (your magic resolve function that returns a proper url) */;
 	},
+
+	// Optional, this defines how many segments should be cached. The lower this value is the more "live" the stream is
+	3,
 );
+
+// Required, if not handled the NodeJS process might exit once an error is thrown. The stream will end
+stream.on('error', (e) => {
+	// Oh-oh Error
+});
+
+// Optional, called whenever a warning occurs. Stream will continue as normal. This will usually be some YouTube randomness stuff
+stream.on('warning', (msg, e) => {
+	// Do something
+});
 ```
 
 Links
