@@ -26,7 +26,7 @@ import M3U8Parser from './M3U8Parser';
  */
 class YouTubeLiveStream extends PassThrough {
 
-	private resolveFunc: () => string|Promise<string>;
+	private resolveFunc: (firstResolve: boolean) => string|Promise<string>;
 	private segmentCacheCount: number = null;
 
 	private resolvedUrl: string = null;
@@ -44,7 +44,7 @@ class YouTubeLiveStream extends PassThrough {
 	 * @param resolveFunc A function that resolves to a YouTube M3U8 playlist URL (Use YTDL or youtube-dl to get the URL)
 	 * @param segmentCacheCount How many segments should be buffered. Minimum is 3. The more data is cached the more the stream is delayed
 	 */
-	constructor(resolveFunc: () => string|Promise<string>, segmentCacheCount?: number);
+	constructor(resolveFunc: (firstResolve: boolean) => string|Promise<string>, segmentCacheCount?: number);
 	/**
 	 * Creates a new YouTubeLiveStream and starts it
 	 *
@@ -138,8 +138,8 @@ class YouTubeLiveStream extends PassThrough {
 
 		// Check for resolved url
 		if (!this.resolvedUrl || Date.now() > this.urlExpire) {
-			this.resolvedUrl = await this.resolveFunc();
-			this.urlExpire = this.getExpireTime(this.resolvedUrl);
+			this.resolvedUrl = await this.resolveFunc(!this.resolvedUrl);
+			this.urlExpire = this.getExpireTime(this.resolvedUrl) * 1000;
 		}
 
 		// Create URL object and apply startSequence if we have one
