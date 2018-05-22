@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.0.5] - 2018-05-22
+## Changed
+- Hopefully moving NPM package ownership over with this version
+
 ## [1.0.4] - 2018-03-12
 ### Added
 - Changelog
