@@ -25,10 +25,10 @@
 		"experimentalDecorators": true
 	},
 	"include": [
-		"./src/**/*"
+		"lib/**/*"
 	],
 	"exclude": [
 		"./node_modules/**/*",
-		"./src/**/*.spec.ts"
+		"lib/**/*.spec.ts"
 	]
 }

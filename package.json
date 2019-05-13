@@ -9,7 +9,7 @@
     "license": "Apache-2.0",
     "private": false,
     "devDependencies": {
-		"@ayana/tslint-config": "^1.1.2",
+        "@ayana/tslint-config": "^1.1.2",
         "@types/node": "^10.14.6",
         "tslint": "^5.16.0",
         "typescript": "^3.4.5"
