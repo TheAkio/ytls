@@ -20,12 +20,11 @@ import { Duplex } from 'stream';
 import { parse } from 'url';
 
 export default class BufferedStreamLoader {
-
 	public static async downloadTries(url: string, tryCount: number, warningCallback?: (msg: string, err: Error) => void): Promise<Duplex> {
 		try {
 			return await BufferedStreamLoader.download(url);
 		} catch (err) {
-			// TODO Eventually delay here?
+			// TODO: Eventually delay here?
 			if (warningCallback) warningCallback('StreamBuffer load attempt failed', err);
 			if (tryCount <= 1) throw new Error(`Could not load buffered stream after several tries: ${err.message}`);
 			return BufferedStreamLoader.downloadTries(url, tryCount - 1, warningCallback);
@@ -45,7 +44,7 @@ export default class BufferedStreamLoader {
 		return stream;
 	}
 
-	/**
+	/*
 	 * Inspired by https://github.com/fent/node-miniget/blob/master/lib/index.js
 	 */
 	private static downloadBuffer(url: string, redirectCount: number = 0, maxRedirects = 3): Promise<Buffer> {
@@ -70,10 +69,10 @@ export default class BufferedStreamLoader {
 				if ([301, 302, 303, 307].indexOf(res.statusCode) > -1) {
 					if (redirectCount >= (maxRedirects - 1)) {
 						return reject(new Error('Too many redirects'));
-					} else {
-						return BufferedStreamLoader.downloadBuffer(res.headers.location, redirectCount + 1).then(resolve).catch(reject);
 					}
-				} else if (res.statusCode < 200 || 300 <= res.statusCode) {
+
+					return BufferedStreamLoader.downloadBuffer(res.headers.location, redirectCount + 1).then(resolve).catch(reject);
+				} else if (res.statusCode < 200 || res.statusCode >= 300) {
 					return reject(new Error(`Status code: ${res.statusCode}`));
 				}
 
@@ -92,5 +91,4 @@ export default class BufferedStreamLoader {
 			req.on('error', reject);
 		});
 	}
-
 }

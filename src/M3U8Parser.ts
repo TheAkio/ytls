@@ -17,11 +17,10 @@
 
 import { Writable } from 'stream';
 
-/**
+/*
  * Inspired by https://github.com/fent/node-m3u8stream/blob/master/lib/m3u8-parser.js
  */
 export default class M3U8Parser extends Writable {
-
 	private lastLine: string = '';
 
 	constructor() {
@@ -56,5 +55,4 @@ export default class M3U8Parser extends Writable {
 
 		callback();
 	}
-
 }

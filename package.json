@@ -1,7 +1,7 @@
 {
     "name": "ytls",
     "version": "1.0.5",
-    "description": "YouTube Livestreams with NodeJS made easy ",
+    "description": "YouTube Livestreams with NodeJS made easy",
     "main": "build/index.js",
     "types": "build/index.d.ts",
     "repository": "https://github.com/TheAkio/ytls.git",
@@ -9,9 +9,9 @@
     "license": "Apache-2.0",
     "private": false,
     "devDependencies": {
-        "@types/node": "^9.4.7",
-        "tslint": "^5.9.1",
-        "tslint-config-xo": "^1.4.0",
-        "typescript": "^2.7.2"
+		"@ayana/tslint-config": "^1.1.2",
+        "@types/node": "^10.14.6",
+        "tslint": "^5.16.0",
+        "typescript": "^3.4.5"
     }
 }

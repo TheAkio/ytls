@@ -15,7 +15,6 @@
  */
 'use strict';
 
-import * as https from 'https';
 import { PassThrough, Readable } from 'stream';
 import { URL } from 'url';
 import BufferedStreamLoader from './BufferedStreamLoader';
@@ -25,7 +24,6 @@ import M3U8Parser from './M3U8Parser';
  * Utility class that turns a YouTube Livestream M3U8 playlist URL into a stream containing all segments
  */
 class YouTubeLiveStream extends PassThrough {
-
 	private resolveFunc: (firstResolve: boolean) => string|Promise<string>;
 	private segmentCacheCount: number = null;
 
@@ -89,7 +87,8 @@ class YouTubeLiveStream extends PassThrough {
 				clearInterval(this.loadInterval);
 				this.loadInterval = null;
 			}
-			PassThrough.prototype.end.call(this);
+
+			PassThrough.prototype.end.apply(this, arguments as any);
 		};
 
 		// Define error wrapper function so we clear interval and close the stream before passing to the user
@@ -110,7 +109,7 @@ class YouTubeLiveStream extends PassThrough {
 		// Start loading segments, the stream will then start
 		loadFn();
 		// Try segment loading. The interval is calculated by how much data is cached
-		this.loadInterval = setInterval(loadFn, 4500 * (this.segmentCacheCount - 2));
+		this.loadInterval = setInterval(loadFn, (this.segmentCacheCount - 2) * 4500);
 	}
 
 	private getExpireTime(url: string) {
