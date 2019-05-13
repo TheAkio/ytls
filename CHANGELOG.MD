@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Updated Dependencies, Linter
 - Adjusted Code to new Linter settings
 - Changed source folder name to "lib"
+- Added examples
 
 ## [1.0.5] - 2018-05-22
 ## Changed

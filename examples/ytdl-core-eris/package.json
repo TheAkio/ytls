@@ -1,0 +1,11 @@
+{
+	"name": "ytls-example-ytdl-core-eris",
+	"version": "1.0.0",
+	"description": "YTLS example using ytdl-core and eris",
+	"main": "index.js",
+	"dependencies": {
+		"eris": "^0.9.0",
+		"ytdl-core": "^0.29.1",
+		"ytls": "^1.0.5"
+	}
+}
