@@ -4,11 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+
+## [1.0.6] - 2019-05-14
+## Added
+- Examples
+- "available" Event to indicate when new data has been downloaded
+## Changed
 - Updated Dependencies, Linter
 - Adjusted Code to new Linter settings
-- Changed source folder name to "lib"
-- Added examples
-- Added "available" Event to indicate when new data has been downloaded
+- Source folder name to "lib"
+## Fixed
+- Closing the stream not properly stopping YTLS from downloading data
 
 ## [1.0.5] - 2018-05-22
 ## Changed
