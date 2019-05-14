@@ -81,19 +81,16 @@ class YouTubeLiveStream extends PassThrough {
 		if (segmentCacheCount < 3) throw new Error('YTLS: Segment cache count cannot be < 3');
 		this.segmentCacheCount = segmentCacheCount;
 
-		// Override end function to clear load interval
-		this.end = () => {
+		super.on('close', () => {
 			if (this.loadInterval) {
 				clearInterval(this.loadInterval);
 				this.loadInterval = null;
 			}
-
-			PassThrough.prototype.end.apply(this, arguments as any);
-		};
+		});
 
 		// Define error wrapper function so we clear interval and close the stream before passing to the user
 		const errorFn = (e: Error) => {
-			this.end();
+			this.destroy();
 			this.emit('error', e);
 		};
 
