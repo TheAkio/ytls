@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Adjusted Code to new Linter settings
 - Changed source folder name to "lib"
 - Added examples
+- Added "available" Event to indicate when new data has been downloaded
 
 ## [1.0.5] - 2018-05-22
 ## Changed

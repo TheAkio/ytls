@@ -46,10 +46,22 @@ bot.on('ready', () => {
 	channel.join().then(voiceConnection => {
 		console.log('Joined voice channel!');
 
-		voiceConnection.play(stream, {
-			frameDuration: 60,
-			format: null
-		});
+		const playStream = () => {
+			console.log('Data is available! Starting to play.');
+			voiceConnection.play(stream, {
+				frameDuration: 60,
+				format: null,
+			});
+		};
+		
+		// You can omit this check and directly use the 'available' event. It will be emitted whenever new data was downloaded.
+		if (stream.readableLength > 0) {
+			// Data is available, we can play instantly
+			playStream();
+		} else {
+			// Data is not available, we should wait so eris doesn't kill our stream
+			stream.once('available', playStream);
+		}
 	});
 });
 

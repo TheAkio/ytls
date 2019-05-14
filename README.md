@@ -52,6 +52,11 @@ stream.on('error', (e) => {
 stream.on('warning', (msg, e) => {
 	// Do something
 });
+
+// Optional, called whenever new data has been downloaded. This is useful if the reader requires data to be available instantly and may close the stream if no data is available.
+stream.on('available' () => {
+	// Do something
+});
 ```
 
 Links

@@ -98,6 +98,7 @@ class YouTubeLiveStream extends PassThrough {
 		const loadFn = async () => {
 			try {
 				await this.loadSegments();
+				this.emit('available');
 			} catch (e) {
 				errorFn(e);
 			}
@@ -127,7 +128,7 @@ class YouTubeLiveStream extends PassThrough {
 	private async loadSegments() {
 		// Prevent this function from getting stuck and getting called again by the interval
 		if (this.isLoadingSegments) {
-			this.emit('warning', 'A segment load was attempted while another one was still running', null);
+			this.emit('warning', 'A segment load was attempted while another one was still running. (This may indicate a slow internet connection)', null);
 			return;
 		}
 		this.isLoadingSegments = true;
@@ -204,6 +205,7 @@ declare interface YouTubeLiveStream {
 	addListener(event: 'pipe', listener: (src: Readable) => void): this;
 	addListener(event: 'unpipe', listener: (src: Readable) => void): this;
 	addListener(event: 'warning', listener: (message: string, error: Error) => void): this;
+	addListener(event: 'available', listener: () => void): this;
 
 	emit(event: string | symbol, ...args: any[]): boolean;
 	emit(event: 'close'): boolean;
@@ -213,6 +215,7 @@ declare interface YouTubeLiveStream {
 	emit(event: 'pipe', src: Readable): boolean;
 	emit(event: 'unpipe', src: Readable): boolean;
 	emit(event: 'warning', message: string, error: Error): boolean;
+	emit(event: 'available'): this;
 
 	on(event: string, listener: (...args: any[]) => void): this;
 	on(event: 'close', listener: () => void): this;
@@ -222,6 +225,7 @@ declare interface YouTubeLiveStream {
 	on(event: 'pipe', listener: (src: Readable) => void): this;
 	on(event: 'unpipe', listener: (src: Readable) => void): this;
 	on(event: 'warning', listener: (message: string, error: Error) => void): this;
+	on(event: 'available', listener: () => void): this;
 
 	once(event: string, listener: (...args: any[]) => void): this;
 	once(event: 'close', listener: () => void): this;
@@ -231,6 +235,7 @@ declare interface YouTubeLiveStream {
 	once(event: 'pipe', listener: (src: Readable) => void): this;
 	once(event: 'unpipe', listener: (src: Readable) => void): this;
 	once(event: 'warning', listener: (message: string, error: Error) => void): this;
+	once(event: 'available', listener: () => void): this;
 
 	prependListener(event: string, listener: (...args: any[]) => void): this;
 	prependListener(event: 'close', listener: () => void): this;
@@ -240,6 +245,7 @@ declare interface YouTubeLiveStream {
 	prependListener(event: 'pipe', listener: (src: Readable) => void): this;
 	prependListener(event: 'unpipe', listener: (src: Readable) => void): this;
 	prependListener(event: 'warning', listener: (message: string, error: Error) => void): this;
+	prependListener(event: 'available', listener: () => void): this;
 
 	prependOnceListener(event: string, listener: (...args: any[]) => void): this;
 	prependOnceListener(event: 'close', listener: () => void): this;
@@ -249,6 +255,7 @@ declare interface YouTubeLiveStream {
 	prependOnceListener(event: 'pipe', listener: (src: Readable) => void): this;
 	prependOnceListener(event: 'unpipe', listener: (src: Readable) => void): this;
 	prependOnceListener(event: 'warning', listener: (message: string, error: Error) => void): this;
+	prependOnceListener(event: 'available', listener: () => void): this;
 
 	removeListener(event: string, listener: (...args: any[]) => void): this;
 	removeListener(event: 'close', listener: () => void): this;
@@ -258,6 +265,7 @@ declare interface YouTubeLiveStream {
 	removeListener(event: 'pipe', listener: (src: Readable) => void): this;
 	removeListener(event: 'unpipe', listener: (src: Readable) => void): this;
 	removeListener(event: 'warning', listener: (message: string, error: Error) => void): this;
+	removeListener(event: 'available', listener: () => void): this;
 }
 
 export default YouTubeLiveStream;
